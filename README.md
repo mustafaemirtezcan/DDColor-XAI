@@ -2,7 +2,7 @@
 
 Which parts of a grayscale image decide the color of a given region? This project explores that question for [DDColor](https://github.com/piddnad/DDColor) (ICCV 2023), an image colorization model. It adapts Grad-CAM and RISE from classification to dense color output, and adds query-attention maps and semantic occlusion as supporting analyses. All experiments use 150-image subsets of COCO and ADE20K.
 
-Developed with Mustafa Anakök. The full write-up is in [report.pdf](report.pdf).
+The full write-up is in [report.pdf](report.pdf).
 
 ## Findings
 
