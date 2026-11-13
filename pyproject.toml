@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ddcolor-xai"
+version = "0.1.0"
+description = "Region-based XAI experiments for DDColor image colorization"
+requires-python = ">=3.9,<3.14"
+dependencies = [
+  "huggingface-hub>=0.23",
+  "lpips>=0.1.4",
+  "matplotlib>=3.8",
+  "numpy>=1.24,<3",
+  "opencv-python>=4.7,<5",
+  "pandas>=2.0",
+  "Pillow>=10.0",
+  "scikit-image>=0.22",
+  "scipy>=1.11",
+  "tqdm>=4.66",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
