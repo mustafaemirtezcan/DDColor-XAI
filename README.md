@@ -1,11 +1,12 @@
-# DDColor XAI
+# 🎨 DDColor XAI
 
-Which parts of a grayscale image decide the color of a given region? This project explores that question for [DDColor](https://github.com/piddnad/DDColor) (ICCV 2023), an image colorization model. It adapts Grad-CAM and RISE from classification to dense color output, and adds query-attention maps and semantic occlusion as supporting analyses. All experiments use 150-image subsets of COCO and ADE20K.
+How does an AI decide what color the sky should be? 🤔
 
-The full write-up is in [report.pdf](report.pdf).
+This project looks inside [DDColor](https://github.com/piddnad/DDColor), a state-of-the-art image colorization model, to see which parts of a black-and-white photo shape the colors it chooses. We adapted explainability methods such as Grad-CAM and RISE to colorization and tested them on the COCO and ADE20K datasets.
 
-## Findings
+## ✨ Highlights
 
-- Region-Grad-CAM gives the best localization (mean energy inside the mask 0.49, vs 0.26 for RISE) and is about 13 times faster.
-- Region-RISE gets the best deletion score on ADE20K, but it is slower and noisier.
-- In 15.3% of ADE20K images, a neighboring region changes the target's color more than the target region itself.
+- 🔍 Grad-CAM pointed to the right regions most reliably, and it was also the fastest method.
+- 🌳 The model mostly relies on the region itself, but in about 15% of scenes a neighbor matters more, such as trees next to a building.
+
+📄 [Full report](report.pdf)
