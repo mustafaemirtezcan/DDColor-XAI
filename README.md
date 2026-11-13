@@ -1,14 +1,6 @@
 # DDColor XAI
 
-Which parts of a grayscale image decide the color of a given region? This project explores that question for [DDColor](https://github.com/piddnad/DDColor) (ICCV 2023). The two main methods are Region-Grad-CAM and Region-RISE. Query-attention maps and semantic occlusion are extra analyses. Everything is evaluated on 150-image subsets of COCO val2017 and ADE20K.
-
-Joint work with Mustafa Anakök. The full write-up is in [report.pdf](report.pdf).
-
-## Findings
-
-- Grad-CAM has the best localization (mean energy inside the mask 0.49, vs 0.26 for RISE) and is about 13x faster.
-- RISE gets the best deletion score on ADE20K, but it is slow and noisy.
-- In 15.3% of ADE20K images, a neighboring region changes the target's color more than the target region itself.
+Region-based explainability study of the [DDColor](https://github.com/piddnad/DDColor) image colorization model, using Region-Grad-CAM, Region-RISE, query attention and semantic occlusion on COCO and ADE20K. Developed with Mustafa Anakök. See [report.pdf](report.pdf) for details.
 
 ## Setup
 
@@ -20,17 +12,15 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-The DDColor weights are downloaded from Hugging Face on the first run.
-
-## Running
-
-Build a manifest with `scripts/prepare_manifest.py` (`coco` or `ade20k`), then run:
+## Usage
 
 ```bash
-python scripts/run_experiment.py \
-  --manifest data/manifests/coco_val150.jsonl \
-  --ddcolor-root third_party/DDColor \
-  --output runs/coco
+python scripts/prepare_manifest.py coco --images data/coco/val2017 \
+  --annotations data/coco/annotations/instances_val2017.json \
+  --output data/manifests/coco_val150.jsonl --mask-dir data/masks/coco --limit 150
+
+python scripts/run_experiment.py --manifest data/manifests/coco_val150.jsonl \
+  --ddcolor-root third_party/DDColor --output runs/coco
 ```
 
-The extra analyses run with `sanity_check.py`, `run_attention_analysis.py` and `run_semantic_occlusion.py`. The image IDs used in the experiments are listed in `subset_lists/`.
+The image IDs used in the experiments are listed in `subset_lists/`.
